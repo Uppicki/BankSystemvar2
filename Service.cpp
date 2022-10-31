@@ -21,7 +21,6 @@ void Service::__init__()
 	this->addClient(new Client("Client 3"));
 	this->addClient(new Client("Client 4", 1000));
 
-	this->addBank(new Bank("Bank 1", this->_fisClients[3]));
 }
 
 

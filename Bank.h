@@ -1,21 +1,21 @@
 #pragma once
-#include "Client.h"
+#include "ClientAccount.h"
 
 
 class Bank
 {
 private:
-	Client* _ownerClient;
+	Account* _ownerClient;
 	std::string _name;
 	double _balance;
 	double _procent;
 	std::vector<Client*> _clients;
 
 public:
-	Bank(std::string name, Client* client);
+	Bank(std::string name, Account* client);
 	~Bank();
 
-	Client* getOwnerCLient();
+	Account* getOwnerCLient();
 
 	std::string getName();
 	void setName(std::string name);

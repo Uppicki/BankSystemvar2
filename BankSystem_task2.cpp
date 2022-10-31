@@ -14,7 +14,7 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-
+	/*
 
 	Service* service = new Service();
 
@@ -63,7 +63,23 @@ int main()
 		default:
 			break;
 		}
-	}
+	}*/
+
+
+
+
+	Account* a = new Account(new Client("asd"));
+	Account* a2 = new ClientAccount(new Bank( "aassaaa", a), new Client("asdasdda"));
+
+
+	std::cout << a->getID() << "\n\n";
+	std::cout << a2->getID() << "\n\n";
+	std::cout << a->getOwnerClient()->getName() << "\n\n";
+	std::cout << a2->getOwnerClient()->getName() << "\n\n";
+	
+	std::cout << dynamic_cast<ClientAccount*>(a2)->getOwnerBank()->getName() << "\n\n";
+	std::cout << a->getID() << "\n\n";
+
 }
 
 

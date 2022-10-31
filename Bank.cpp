@@ -1,6 +1,6 @@
 #include "Bank.h"
 
-Bank::Bank(std::string name, Client* client)
+Bank::Bank(std::string name, Account* client)
 {
 	this->_ownerClient = client;
 	this->_name = name;
@@ -14,7 +14,7 @@ Bank::~Bank()
 
 
 
-Client* Bank::getOwnerCLient()
+Account* Bank::getOwnerCLient()
 {
 	return this->_ownerClient;
 }
