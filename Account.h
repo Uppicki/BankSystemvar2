@@ -1,5 +1,6 @@
 #pragma once
-#include "Client.h"
+#include "FizClient.h"
+#include "LegClient.h"
 
 
 

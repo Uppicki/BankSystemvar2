@@ -144,6 +144,8 @@
     <ClCompile Include="BankSystem_task2.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ClientAccount.cpp" />
+    <ClCompile Include="FizClient.cpp" />
+    <ClCompile Include="LegClient.cpp" />
     <ClCompile Include="Service.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +153,8 @@
     <ClInclude Include="Bank.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="ClientAccount.h" />
+    <ClInclude Include="FizClient.h" />
+    <ClInclude Include="LegClient.h" />
     <ClInclude Include="Service.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

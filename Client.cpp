@@ -22,10 +22,7 @@ std::string Client::getName()
 {
 	return _name;
 }
-void Client::setName(std::string name)
-{
-	this->_name = name;
-}
+
 
 double Client::getBalance()
 {

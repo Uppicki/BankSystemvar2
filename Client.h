@@ -12,13 +12,12 @@ public:
 
 	~Client();
 
-	std::string getName();
-	void setName(std::string);
+	virtual std::string getName();
 
 	double getBalance();
 	void setBalance(double balance);
 
-	bool isFis();
-	std::string getType();
+	virtual bool isFis() = 0;
+	virtual std::string getType() = 0;
 };
 

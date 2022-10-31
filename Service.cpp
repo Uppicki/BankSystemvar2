@@ -15,12 +15,12 @@ Service::~Service()
 }
 
 void Service::__init__()
-{
+{/*
 	this->addClient(new Client("Client 1", 10000));
 	this->addClient(new Client("Client 2"));
 	this->addClient(new Client("Client 3"));
 	this->addClient(new Client("Client 4", 1000));
-
+	*/
 }
 
 

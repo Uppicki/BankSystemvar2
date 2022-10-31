@@ -63,7 +63,7 @@ int main()
 		default:
 			break;
 		}
-	}*/
+	}
 
 
 
@@ -78,8 +78,16 @@ int main()
 	std::cout << a2->getOwnerClient()->getName() << "\n\n";
 	
 	std::cout << dynamic_cast<ClientAccount*>(a2)->getOwnerBank()->getName() << "\n\n";
-	std::cout << a->getID() << "\n\n";
+	std::cout << a->getID() << "\n\n";*/
 
+	Client* c1 = new LegClient("Client 1");
+
+	Client* c2 = new FizClient("Client 1", "surname");
+
+	std::cout << c1->getName() << "\n";
+	std::cout << c1->getType() << "\n";
+	std::cout << c2->getName() << "\n";
+	std::cout << c2->getType() << "\n";
 }
 
 
