@@ -20,6 +20,8 @@ void Service::__init__()
 	this->addClient(new Client("Client 2"));
 	this->addClient(new Client("Client 3"));
 	this->addClient(new Client("Client 4", 1000));
+
+	this->addBank(new Bank("Bank 1", this->_fisClients[3]));
 }
 
 
@@ -41,10 +43,23 @@ std::vector<Client*> Service::getAllClients()
 	return result;
 }
 
+
+std::vector<Bank*> Service::getBanks()
+{
+	return this->_banks;
+}
+
+
+
 void Service::addClient(Client* client)
 {
 	if (client->isFis())
 		_fisClients.push_back(client);
 	else
 		_legClients.push_back(client);
+}
+
+void Service::addBank(Bank* bank)
+{
+	_banks.push_back(bank);
 }

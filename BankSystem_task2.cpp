@@ -7,6 +7,9 @@
 void printClients(std::vector<Client*> clients);
 void printClient(Client* client);
 
+void printBanks(std::vector<Bank*> banks);
+void printBank(Bank* bank);
+
 int main()
 {
     std::cout << "Hello World!\n";
@@ -22,7 +25,8 @@ int main()
 	while (change != 0)
 	{
 		std::cout << "\nInput your actions:\n"
-			<< "\t1)Show clients\n";
+			<< "\t1)Show clients\n"
+			<< "\t2)Show banks\n";
 
 		std::cin >> change;
 
@@ -53,6 +57,9 @@ int main()
 						break;
 				}
 			}
+		case 2:
+			printBanks(service->getBanks());
+			break;
 		default:
 			break;
 		}
@@ -79,6 +86,26 @@ void printClient(Client* client)
 	std::cout << "\nClient name: " << client->getName();
 	std::cout << "\nClient type: " << client->getType();
 	std::cout << "\nClient balance: " << client->getBalance();
+}
+
+void printBanks(std::vector<Bank*> banks)
+{
+	if (banks.size() == 0)
+		std::cout << "\n\n\nList is empty\n";
+	else
+	{
+		std::cout << "\n\n\nList size: " << banks.size() << "\n";
+		for (Bank* b : banks)
+			printBank(b);
+	}
+}
+ 
+void printBank(Bank* bank)
+{
+	std::cout << "\nBank name: " << bank->getName();
+	std::cout << "\nBank balance: " << bank->getBalance();
+	std::cout << "\nBank client List: ";
+	printClients(bank->getClients());
 }
 
 

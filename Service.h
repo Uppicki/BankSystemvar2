@@ -1,10 +1,12 @@
 #pragma once
-#include "Client.h"
+#include "Bank.h"
 class Service
 {
 private:
 	std::vector<Client*> _fisClients;
 	std::vector<Client*> _legClients;
+
+	std::vector<Bank*> _banks;
 
 	void __init__();
 public:
@@ -15,6 +17,10 @@ public:
 	std::vector<Client*> getLegClients();
 	std::vector<Client*> getAllClients();
 
+	std::vector<Bank*> getBanks();
+
 	void addClient(Client* client);
+
+	void addBank(Bank* bank);
 };
 
