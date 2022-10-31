@@ -31,6 +31,15 @@ std::vector<Client*> Service::getLegClients()
 {
 	return _legClients;
 }
+std::vector<Client*> Service::getAllClients()
+{
+	std::vector<Client*> result = this->getFisClients();
+	std::vector<Client*> result2 = this->getLegClients();
+
+	result.insert(result.end(), result2.begin(), result2.end());
+
+	return result;
+}
 
 void Service::addClient(Client* client)
 {

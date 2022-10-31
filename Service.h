@@ -13,6 +13,7 @@ public:
 
 	std::vector<Client*> getFisClients();
 	std::vector<Client*> getLegClients();
+	std::vector<Client*> getAllClients();
 
 	void addClient(Client* client);
 };

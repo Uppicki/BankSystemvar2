@@ -31,31 +31,26 @@ int main()
 		switch (change)
 		{
 		case 1:
-			std::cout << "\nInput your actions:\n"
-				<< "\t1)Show all clients\n"
-				<< "\t2)Show fiz clients\n"
-				<< "\t3)Show legal clients\n";
-
-			std::cin >> change;
-
 			while (change != 9)
 			{
-				std::vector<Client*> result;
-				std::vector<Client*> result2;
+				std::cout << "\nInput your actions:\n"
+					<< "\t1)Show all clients\n"
+					<< "\t2)Show fiz clients\n"
+					<< "\t3)Show legal clients\n";
+
+				std::cin >> change;
 
 				switch (change)
 				{
-					
-				case 1:
-					result = service->getFisClients();
-					result2 = service->getLegClients();
-					result.insert(result.end(), result2.begin(), result2.end());
-
-					printClients(result);
-
-					result;
-				default:
-					break;
+					case 1:
+						printClients(service->getAllClients());
+						break;
+					case 2:
+						printClients(service->getFisClients());
+						break;
+					case 3:
+						printClients(service->getLegClients());
+						break;
 				}
 			}
 		default:
@@ -70,10 +65,10 @@ int main()
 void printClients(std::vector<Client*> clients)
 {
 	if (clients.size() == 0)
-		std::cout << "\nList is empty\n";
+		std::cout << "\n\n\nList is empty\n";
 	else
 	{
-		std::cout << "\nList size: " << clients.size() << "\n";
+		std::cout << "\n\n\nList size: " << clients.size() << "\n";
 		for (Client* c : clients)
 			printClient(c);
 	}
