@@ -21,6 +21,8 @@ public:
 
 	void addClient(Client* client);
 
-	void addBank(Bank* bank);
+	bool addBank(std::string name, Client* client);
+
+	bool addClientInBank(Bank* bank, Client* client);
 };
 

@@ -10,6 +10,9 @@ void printClient(Client* client);
 void printBanks(std::vector<Bank*> banks);
 void printBank(Bank* bank);
 
+void printAccounts(std::vector<ClientAccount*> accounts);
+void printAccount(ClientAccount* account);
+
 int main()
 {
     std::cout << "Hello World!\n";
@@ -80,14 +83,13 @@ int main()
 	std::cout << dynamic_cast<ClientAccount*>(a2)->getOwnerBank()->getName() << "\n\n";
 	std::cout << a->getID() << "\n\n";*/
 
-	Client* c1 = new LegClient("Client 1");
+	Service* service = new Service();
 
-	Client* c2 = new FizClient("Client 1", "surname");
+	printClients(service->getAllClients());
+	printClients(service->getFisClients());
+	printClients(service->getLegClients());
 
-	std::cout << c1->getName() << "\n";
-	std::cout << c1->getType() << "\n";
-	std::cout << c2->getName() << "\n";
-	std::cout << c2->getType() << "\n";
+	printBanks(service->getBanks());
 }
 
 
@@ -107,9 +109,12 @@ void printClients(std::vector<Client*> clients)
 
 void printClient(Client* client)
 {
+	std::cout << "\n";
 	std::cout << "\nClient name: " << client->getName();
 	std::cout << "\nClient type: " << client->getType();
 	std::cout << "\nClient balance: " << client->getBalance();
+	std::cout << "\nClient accounts: " << client->getAccounts().size();
+	printAccounts(client->getAccounts());
 }
 
 void printBanks(std::vector<Bank*> banks)
@@ -126,14 +131,32 @@ void printBanks(std::vector<Bank*> banks)
  
 void printBank(Bank* bank)
 {
+	std::cout << "\n";
 	std::cout << "\nBank name: " << bank->getName();
+	std::cout << "\nBank owner account: " << bank->getOwnerAccount()->getID();
 	std::cout << "\nBank balance: " << bank->getBalance();
 	std::cout << "\nBank client List: ";
-	printClients(bank->getClients());
+	printAccounts(bank->getAccounts());
 }
 
 
+void printAccounts(std::vector<ClientAccount*> accounts)
+{
+	if (accounts.size() == 0)
+		std::cout << "\n\n\nList is empty\n";
+	else
+	{
+		std::cout << "\n\n\nList size: " << accounts.size() << "\n";
+		for (ClientAccount* a : accounts)
+			printAccount(a);
+	}
+}
 
+void printAccount(ClientAccount* account)
+{
+	std::cout << "\nBank name: " << account->getID();
+	std::cout << "\nBank balance: " << account->getBalance();
+}
 
 
 

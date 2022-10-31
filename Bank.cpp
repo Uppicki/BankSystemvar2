@@ -1,12 +1,12 @@
 #include "Bank.h"
 
-Bank::Bank(std::string name, Account* client)
+Bank::Bank(std::string name, Client* client)
 {
-	this->_ownerClient = client;
+	this->_ownerAccount = new Account(client);
 	this->_name = name;
 	this->_balance = 0;
 	this->_procent = 0.3;
-	this->_clients = {};
+	this->_accounts = {};
 }
 
 Bank::~Bank()
@@ -14,9 +14,14 @@ Bank::~Bank()
 
 
 
-Account* Bank::getOwnerCLient()
+Account* Bank::getOwnerAccount()
 {
-	return this->_ownerClient;
+	return this->_ownerAccount;
+}
+
+Client* Bank::getOwnerClient()
+{
+	return this->_ownerAccount->getOwnerClient();
 }
 
 
@@ -36,9 +41,9 @@ double Bank::getBalance()
 	return this->_balance;
 }
 
-void Bank::setBalance(double balance)
+void Bank::toUpBalance(double balance)
 {
-	this->_balance = balance;
+	this->_balance += balance;
 }
 
 
@@ -48,22 +53,22 @@ double Bank::getProcent()
 }
 
 
-std::vector<Client*> Bank::getClients()
+std::vector<ClientAccount*> Bank::getAccounts()
 {
-	return this->_clients;
+	return this->_accounts;
 }
 
 void Bank::addClient(Client* client)
 {
 	if (!this->isBankClient(client))
-		this->_clients.push_back(client);
+		this->_accounts.push_back(new ClientAccount(this, client));
 }
 
 
 bool Bank::isBankClient(Client* client)
 {
-	for (Client* c : this->_clients)
-		if (client == c)
+	for (Account* a : this->_accounts)
+		if (a->getOwnerClient() == client)
 			return true;
 	return false;
 }

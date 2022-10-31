@@ -41,3 +41,16 @@ std::string Account::generateId()
 {
 	return "BankOwnerAccount:<" + this->_ownerClient->getName() + ">";
 }
+
+void Account::toUpBalance(double sum)
+{
+	this->_balance += sum;
+}
+
+bool Account::withdrawBalance(double sum)
+{
+	if (this->_balance < sum)
+		return false;
+	this->_balance -= sum;
+	return true;
+}

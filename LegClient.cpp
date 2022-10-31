@@ -22,3 +22,8 @@ std::string LegClient::getType()
 {
 	return "LegalEntity";
 }
+
+bool LegClient::transferIntoBanks(ClientAccount* fromAccount, ClientAccount* toAccount, double sum)
+{
+	return false;
+}

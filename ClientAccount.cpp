@@ -6,6 +6,7 @@ ClientAccount::ClientAccount(Bank* bank, Client* client)
 {
 	this->_ownerBank = bank;
 	this->setId(this->generateId());
+	this->getOwnerClient()->addAccount(this);
 }
 
 

@@ -15,12 +15,22 @@ Service::~Service()
 }
 
 void Service::__init__()
-{/*
-	this->addClient(new Client("Client 1", 10000));
-	this->addClient(new Client("Client 2"));
-	this->addClient(new Client("Client 3"));
-	this->addClient(new Client("Client 4", 1000));
-	*/
+{
+	this->addClient(new FizClient("Client", "Fizic 1", 1000));
+	this->addClient(new FizClient("Client", "Fizic 2", 1000));
+	this->addClient(new FizClient("Client", "Fizic 3", 1000));
+	this->addClient(new LegClient("LegClient 1", 10000));
+	this->addClient(new LegClient("LegClient 2", 10000));
+	this->addClient(new LegClient("LegClient 3", 10000));
+
+	this->addBank("Bank 1", this->_legClients[0]);
+	this->addBank("Bank 2", this->_legClients[0]);
+
+	this->addClientInBank(this->_banks[0], this->_legClients[2]);
+	this->addClientInBank(this->_banks[0], this->_legClients[2]);
+	this->addClientInBank(this->_banks[1], this->_legClients[2]);
+	this->addClientInBank(this->_banks[0], this->_fisClients[2]);
+	this->addClientInBank(this->_banks[1], this->_fisClients[2]);
 }
 
 
@@ -58,7 +68,20 @@ void Service::addClient(Client* client)
 		_legClients.push_back(client);
 }
 
-void Service::addBank(Bank* bank)
+bool Service::addBank(std::string name, Client* client)
 {
-	_banks.push_back(bank);
+	if (client->isFis())
+		return false;
+	else
+		this->_banks.push_back(new Bank(name, client));
+	return true;
+}
+
+
+
+bool Service::addClientInBank(Bank* bank, Client* client)
+{
+	if (bank->isBankClient(client))
+		return false;
+	bank->addClient(client);
 }

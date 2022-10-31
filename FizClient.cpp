@@ -1,4 +1,6 @@
 #include "FizClient.h"
+#include "ClientAccount.h"
+#include "Bank.h"
 
 FizClient::FizClient(std::string name, std::string surname)
 	: Client(name)
@@ -25,4 +27,17 @@ std::string FizClient::getType()
 std::string FizClient::getName()
 {
 	return Client::getName() + " " + this->_surname;
+}
+
+bool FizClient::transferIntoBanks(ClientAccount* fromAccount, ClientAccount* toAccount, double sum)
+{
+	if (fromAccount->withdrawBalance(sum))
+	{
+		double p = fromAccount->getOwnerBank()->getProcent();
+		toAccount->toUpBalance(sum*(1 - p));
+		fromAccount->getOwnerBank()->toUpBalance(sum * p);
+		return true;
+	}
+	else
+		return false;
 }
