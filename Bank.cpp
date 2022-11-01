@@ -10,7 +10,11 @@ Bank::Bank(std::string name, Client* client)
 }
 
 Bank::~Bank()
-{}
+{
+	for (ClientAccount* c : _accounts)
+		delete c;
+	this->_accounts = {};
+}
 
 
 

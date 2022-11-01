@@ -10,7 +10,11 @@ Account::Account(Client* client)
 
 
 Account::~Account()
-{}
+{
+	if (this->_ownerClient != nullptr)
+		this->getOwnerClient()->withdrawBalanceAccount((ClientAccount*)this, this->_balance);
+
+}
 
 double Account::getBalance()
 {
@@ -30,6 +34,11 @@ void Account::setId(std::string id)
 Client* Account::getOwnerClient()
 {
 	return  this->_ownerClient;
+}
+
+void Account::setOwnerClient(Client* client)
+{
+	this->_ownerClient = client;
 }
 
 

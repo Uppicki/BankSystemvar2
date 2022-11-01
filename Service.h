@@ -9,6 +9,11 @@ private:
 	std::vector<Bank*> _banks;
 
 	void __init__();
+
+	int getClientInd(Client* client);
+	void popClient(Client* client, int ind);
+	int getBankInd(Bank* bank);
+	void popBank(Bank* bank, int ind);
 public:
 	Service();
 	~Service();
@@ -21,8 +26,15 @@ public:
 
 	void addClient(Client* client);
 
+	void deleteClient(Client* client);
+
 	bool addBank(std::string name, Client* client);
 
+	void deleteBank(Bank* bank);
+
 	bool addClientInBank(Bank* bank, Client* client);
+
+	std::vector<Client*> getClientsWithAccount();
+	std::vector<Bank*> getFreeBanks(Client* client);
 };
 

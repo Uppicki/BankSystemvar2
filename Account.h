@@ -23,6 +23,7 @@ public:
 	virtual std::string generateId();
 
 	Client* getOwnerClient();
+	void setOwnerClient(Client* client);
 
 	void toUpBalance(double sum);
 	bool withdrawBalance(double sum);

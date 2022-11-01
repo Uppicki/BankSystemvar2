@@ -24,7 +24,7 @@ void Service::__init__()
 	this->addClient(new LegClient("LegClient 3", 10000));
 
 	this->addBank("Bank 1", this->_legClients[0]);
-	this->addBank("Bank 2", this->_legClients[0]);
+	this->addBank("Bank 2", this->_legClients[1]);
 
 	this->addClientInBank(this->_banks[0], this->_legClients[2]);
 	this->addClientInBank(this->_banks[0], this->_legClients[2]);
@@ -84,4 +84,65 @@ bool Service::addClientInBank(Bank* bank, Client* client)
 	if (bank->isBankClient(client))
 		return false;
 	bank->addClient(client);
+}
+
+std::vector<Client*> Service::getClientsWithAccount()
+{
+	std::vector<Client*> result = {};
+
+	for (Client* c : this->getAllClients())
+		if (c->getAccounts().size() != 0)
+			result.push_back(c);
+
+	return result;
+}
+
+void Service::deleteClient(Client* client) {
+	this->popClient(client, this->getClientInd(client));
+	delete client;
+}
+
+void Service::deleteBank(Bank* bank)
+{
+	this->popBank(bank, this->getBankInd(bank));
+	delete bank;
+}
+
+std::vector<Bank*> Service::getFreeBanks(Client* client)
+{
+	std::vector<Bank*> r = {};
+	for (Bank* b : _banks)
+		if (!b->isBankClient(client))
+			r.push_back(b);
+	return r;
+}
+
+int Service::getClientInd(Client* client)
+{
+	std::vector<Client*> r;
+	if (client->isFis())
+		r = _fisClients;
+	else
+		r = _legClients;
+
+	for (int i = 0; i < r.size(); i++)
+		if (client == r[i])
+			return i;
+}
+void Service::popClient(Client* client, int ind)
+{
+	if (client->isFis())
+		_fisClients.erase(_fisClients.begin()+ ind);
+	else
+		_legClients.erase(_legClients.begin() + ind);
+}
+int Service::getBankInd(Bank* bank)
+{
+	for (int i = 0; i < _banks.size(); i++)
+		if (bank == _banks[i])
+			return i;
+}
+void Service::popBank(Bank* bank, int ind)
+{
+	_banks.erase(_banks.begin() + ind);
 }

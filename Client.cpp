@@ -17,7 +17,11 @@ Client::Client(std::string name, double balance)
 
 
 Client::~Client()
-{}
+{
+	for (ClientAccount* c : this->_clientAccouts)
+		c->setOwnerClient(nullptr);
+	_clientAccouts = {};
+}
 
 
 std::string Client::getName()
